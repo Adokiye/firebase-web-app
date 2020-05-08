@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Alex Raymond's Web App</title>
+    <link rel="manifest" href="manifest.json">
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase.js"></script>
+    <script src="../config.js"></script>
+    <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+    <script src="https://www.gstatic.com/firebasejs/ui/4.4.0/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.4.0/firebase-ui-auth.css" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div id="container">
+      <h3 style="display: flex;
+      align-items: center;
+      justify-content: center;">Alex Raymond's Web app</h3>
+      <div id="loading">Loading...</div>
+      <div id="loaded" class="hidden">
+        <div id="main">
+          <div id="user-signed-in" class="hidden">
+            <div id="user-info">
+              <div id="photo-container">
+                <img id="photo" style="height: 45px;width:45px">
+              </div>
+              <div id="name"></div>
+              <div id="email"></div>
+              <div id="phone"></div>
+              <div class="clearfix"></div>
+              <div id="ifPhone"></div>
+            </div>
+            <p>
+              <button id="sign-out">Sign Out</button>
+            </p>
+          </div>
+          <!-- <div id="user-signed-out" class="hidden">
+            <h4 style="display: flex;
+            align-items: center;
+            justify-content: center;">You are signed out.</h4>
+            <div id="firebaseui-spa">
+              <h5 style="display: flex;
+              align-items: center;
+              justify-content: center;">Sign in with one of the options below</h5>
+              <div id="firebaseui-auth-container"></div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

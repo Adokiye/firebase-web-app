@@ -1,0 +1,227 @@
+*,
+/* *:before,
+*:after, */
+ul,
+li,
+a,
+/* button, */
+input,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+img,
+image,
+svg,
+path,
+g,
+canvas {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: transparent;
+  border: none;
+  text-decoration: none;
+  font-family: 'Roboto';
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  list-style: none;
+  color: #000;
+  position: relative;
+  outline: none;
+  -webkit-transition: .2s ease-in-out;
+  transition: .2s ease-in-out;
+}
+*:active,
+*:before:active,
+*:after:active,
+ul:active,
+li:active,
+a:active,
+button:active,
+input:active,
+h1:active,
+h2:active,
+h3:active,
+h4:active,
+h5:active,
+h6:active,
+p:active,
+img:active,
+image:active,
+svg:active,
+path:active,
+g:active,
+canvas:active {
+  outline: none;
+}
+div {
+  font-size: 20px;
+}
+html,
+body {
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+}
+.redText {
+  color: red;
+  
+}
+.button{
+  color: white;
+  font-size: 20px;
+  width: 100px;
+  height: 40px;
+  background-color: red;
+  cursor: pointer;
+  text-align: center;
+vertical-align: middle;
+line-height: 40px;    
+display: none;
+}
+
+.microcopy {
+  max-width: 650px;
+  padding: 10px 30px;
+  /* position: absolute;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%); */
+  text-align: center;
+  color: black;
+  font-size: 20px;
+  line-height: 1.4;
+}
+.btn {
+  background: transparent;
+  border: 2px solid white;
+  border-radius: 50px;
+  color: white;
+  cursor: pointer;
+  font-family: 'Montserrat';
+  font-weight: 700;
+  overflow: hidden;
+  padding: 15px 80px;
+  will-change: padding;
+}
+.btn__text {
+  cursor: inherit;
+  -webkit-transition: 0.35s cubic-bezier(0.34, -0.61, 1, 0.64);
+  transition: 0.35s cubic-bezier(0.34, -0.61, 1, 0.64);
+}
+.btn__loader {
+  width: calc(0% - 4px);
+  height: calc(100% - 4px);
+  background-color: white;
+  border-radius: 50px;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+}
+.btn.active {
+  padding: 0px 80px;
+  -webkit-transition: 0.4s cubic-bezier(0.35, -0.77, 0.67, 1.88);
+  transition: 0.4s cubic-bezier(0.35, -0.77, 0.67, 1.88);
+}
+.btn.active .btn__text {
+  -webkit-transform: translateY(-350%) scale(0);
+          transform: translateY(-350%) scale(0);
+  -webkit-transition: 0.35s cubic-bezier(0.34, -0.61, 1, 0.64);
+  transition: 0.35s cubic-bezier(0.34, -0.61, 1, 0.64);
+}
+.btn.active .btn__loader {
+  -webkit-animation: load 1s ease-in-out infinite;
+          animation: load 1s ease-in-out infinite;
+  -webkit-animation-delay: .5s;
+          animation-delay: .5s;
+}
+@-webkit-keyframes load {
+  0% {
+    width: 0%;
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+  100% {
+    width: 100%;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+}
+@keyframes load {
+  0% {
+    width: 0%;
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+  100% {
+    width: 100%;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+}
+.result, .accuracy {
+  color: green;
+  display: -webkit-box;
+  display: flex;
+  font-size: .9em;
+  font-weight: 400;
+  line-height: 1.4;
+  max-width: 600px;
+  padding: 50px 30px;
+}
+.no-browser-support {
+  display: none;
+  font-size: 1.2rem;
+  color: #e64427;
+  margin-top: 35px;
+}
+.result:first-letter, .accuracy:first-letter {
+  text-transform: uppercase;
+}
+.result:empty, .accuracy:empty {
+  padding: 0;
+}
+
+.result.active:after {
+  content: '...';
+  position: absolute;
+  overflow: hidden;
+  width: 0px;
+  -webkit-animation: something .7s infinite;
+          animation: something .7s infinite;
+}
+@-webkit-keyframes something {
+  100% {
+    width: 20px;
+  }
+}
+@keyframes something {
+  100% {
+    width: 20px;
+  }
+}
+.accuracy {
+  padding: 10px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}

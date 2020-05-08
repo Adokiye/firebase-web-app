@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase.js"></script>
+  <script src="../config.js"></script>
+  <title>Page 2(Alex raymond)</title>
+  <meta name="description" content="An image viewer">
+  <meta name="author" content="Alex Raymond">
+
+  <style type="text/css">
+    .box {
+      fill: #FFFFFF;
+    }
+
+    .box:hover {
+      fill: #f3a4a3;
+    }
+
+    #boxes {
+      position: absolute;
+      top: 5vh;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 40vw;
+    }
+
+    .topLeftImage {
+      position: absolute;
+      width: 25vw;
+      top: 15px;
+      left: 15px;
+    }
+
+    #description {
+      position: absolute;
+      top: 45vw;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2vw;
+      text-align: center;
+      color: white;
+    }
+
+
+
+    /* Carousel code cleaned up */
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      overflow: hidden;
+      display: flex;
+      background: #111;
+      perspective: 1000px;
+      transform-style: preserve-3d;
+    }
+
+    #drag-container,
+    #spin-container {
+      position: relative;
+      display: flex;
+      margin: auto;
+      transform-style: preserve-3d;
+      transform: rotateX(-10deg);
+    }
+
+
+    #drag-container {
+      position: absolute;
+      top: 10vh;
+      right: 10vw;
+      width: 25vw;
+    }
+
+    #drag-container img {
+      transform-style: preserve-3d;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      line-height: 200px;
+      font-size: 50px;
+      text-align: center;
+      box-shadow: 0 0 8px #fff;
+      -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, #0005);
+    }
+
+    #drag-container img.active {
+      box-shadow: 0 0 15px #fffd;
+      -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, #0007);
+    }
+
+    #drag-container p {
+      font-family: Serif;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotateX(90deg);
+      color: #fff;
+    }
+
+    #ground {
+      width: 900px;
+      height: 900px;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotateX(90deg);
+      background: -webkit-radial-gradient(center center, farthest-side, #9993, transparent);
+      user-select: none;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotateY(0deg);
+      }
+
+      to {
+        transform: rotateY(360deg);
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <img class="topLeftImage" src="tl.jpg" alt="top left">
+
+
+  <?xml version="1.0" encoding="utf-8"?>
+  <svg id="boxes" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="470 1045 185 350" >
+   <path
+      d="M471,1045c61.3,0,122.64,0,184,0c0,114.97,0,229.97,0,345c-61.3,0-122.64,0-184,0C471,1275.03,471,1160.03,471,1045z
+    M559.26,1139.17c0-29.77,0-59.27,0-88.73c-27.86,0-55.27,0-82.84,0c0,29.72,0,59.1,0,88.73
+  C504.03,1139.17,531.31,1139.17,559.26,1139.17z M565.1,1139.1c27.93,0,55.33,0,82.98,0c0-29.69,0-59.05,0-88.6
+  c-27.84,0-55.36,0-82.98,0C565.1,1080.15,565.1,1109.42,565.1,1139.1z M559.41,1306.49c-27.91,0-55.32,0-82.94,0
+  c0,26.31,0,52.32,0,78.41c27.8,0,55.22,0,82.94,0C559.41,1358.75,559.41,1332.85,559.41,1306.49z M565.22,1306.48
+  c0,26.29,0,52.3,0,78.27c27.86,0,55.38,0,82.78,0c0-26.3,0-52.19,0-78.27C620.24,1306.48,592.85,1306.48,565.22,1306.48z
+    M559.4,1301.15c0-26.19,0-52.08,0-78.22c-27.8,0-55.33,0-82.96,0c0,26.29,0,52.18,0,78.22
+  C504.23,1301.15,531.66,1301.15,559.4,1301.15z M647.94,1301.14c0-26.55,0-52.44,0-78.22c-27.86,0-55.26,0-82.72,0
+  c0,26.29,0,52.19,0,78.22C592.96,1301.14,620.38,1301.14,647.94,1301.14z M559.37,1217.5c0-24.62,0-48.69,0-72.9
+  c-27.87,0-55.41,0-82.97,0c0,24.48,0,48.55,0,72.9C504.13,1217.5,531.54,1217.5,559.37,1217.5z M565.17,1217.35
+  c27.79,0,55.3,0,82.89,0c0-24.47,0-48.54,0-72.76c-27.84,0-55.35,0-82.89,0C565.17,1169.07,565.17,1193.14,565.17,1217.35z" />
+    <path onclick="changeLocation()" class="box boxa svgBox" data-text="My box a description" d="M559.26,1139.17c-27.95,0-55.23,0-82.84,0c0-29.62,0-59,0-88.73c27.56,0,54.98,0,82.84,0
+  C559.26,1079.9,559.26,1109.4,559.26,1139.17z" />
+    <path onclick="changeLocation()" class="box boxb svgBox" data-text="My box b description" d="M565.1,1139.1c0-29.68,0-58.94,0-88.6c27.62,0,55.14,0,82.98,0c0,29.55,0,58.91,0,88.6
+  C620.43,1139.1,593.02,1139.1,565.1,1139.1z" />
+    <path onclick="changeLocation()" class="box boxc svgBox" data-text="My box c description" d="M559.41,1306.49c0,26.36,0,52.25,0,78.41c-27.72,0-55.14,0-82.94,0c0-26.09,0-52.11,0-78.41
+  C504.09,1306.49,531.5,1306.49,559.41,1306.49z" />
+    <path onclick="changeLocation()" class="box boxd svgBox" data-text="My box d description" d="M565.22,1306.48c27.62,0,55.01,0,82.78,0c0,26.08,0,51.97,0,78.27c-27.4,0-54.92,0-82.78,0
+  C565.22,1358.78,565.22,1332.77,565.22,1306.48z" />
+    <path onclick="changeLocation()" class="box boxe svgBox" data-text="My box e description" d="M559.4,1301.15c-27.74,0-55.17,0-82.96,0c0-26.04,0-51.93,0-78.22c27.62,0,55.15,0,82.96,0
+  C559.4,1249.07,559.4,1274.96,559.4,1301.15z" />
+    <path onclick="changeLocation()" class="box boxf svgBox" data-text="My box f description" d="M647.94,1301.14c-27.56,0-54.97,0-82.72,0c0-26.02,0-51.92,0-78.22c27.46,0,54.86,0,82.72,0
+  C647.94,1248.7,647.94,1274.59,647.94,1301.14z" />
+    <path onclick="changeLocation()" class="box boxg svgBox" data-text="My box g description" d="M559.37,1217.5c-27.83,0-55.24,0-82.97,0c0-24.35,0-48.42,0-72.9c27.57,0,55.1,0,82.97,0
+  C559.37,1168.81,559.37,1192.88,559.37,1217.5z" />
+    <path onclick="changeLocation()" class="box boxh svgBox" data-text="My box h description" d="M565.17,1217.35c0-24.21,0-48.29,0-72.76c27.54,0,55.05,0,82.89,0c0,24.22,0,48.28,0,72.76
+  C620.47,1217.35,592.97,1217.35,565.17,1217.35z" />
+  </svg>
+
+
+
+  <div id="drag-container">
+    <div id="spin-container">
+      <img src="c1.jpg" alt="">
+      <img src="c2.jpg" alt="">
+      <img src="c3.jpg" alt="">
+      <img src="c4.jpg" alt="">
+      <img src="c5.jpg" alt="">
+      <img src="c6.jpg" alt="">
+      <img src="c7.jpg" alt="">
+      <img src="c8.jpg" alt="">
+    </div>
+    <div id="ground"></div>
+  </div>
+
+
+
+  <p id="description">TAP DIFFERENT BOXES</p>
+
+  <!-- <script src="../app.js"></script> -->
+  <script>
+
+  function changeLocation(){
+    window.location.href = window.location.origin+'/page3';
+  };
+  
+    // Cleaned up from before, a little added
+    var autoRotate = !0,
+      rotateSpeed = -60,
+      ratio = 170 / 120,
+      imgWidth = innerWidth / 15,
+      imgHeight = imgWidth * ratio,
+      radius = imgWidth * 2;
+
+    setTimeout(init, 100);
+
+    var obox = document.getElementById("drag-container"),
+      ospin = document.getElementById("spin-container"),
+      aImg = ospin.getElementsByTagName("img"),
+      aEle = aImg;
+
+    var ground = document.getElementById("ground");
+
+    ospin.style.width = imgWidth + "px", ospin.style.height = imgHeight + "px";
+    window.addEventListener("resize", resize);
+    
+    function resize() {
+      imgWidth = innerWidth / 15;
+      imgHeight = imgWidth * ratio;
+      radius = imgWidth * 2;
+
+      ospin.style.width = imgWidth + "px", ospin.style.height = imgHeight + "px";
+
+      ground.style.width = 3 * radius + "px", ground.style.height = 3 * radius + "px";
+
+      for (var t = 0; t < aEle.length; t++) {
+        aEle[t].style.transition = "none";
+        aEle[t].style.transform = "rotateY(" + t * (360 / aEle.length) + "deg) translateZ(" + radius + "px)"
+      }
+    }
+
+    function init(e) {
+      for (var t = 0; t < aEle.length; t++) aEle[t].style.transform = "rotateY(" + t * (360 / aEle.length) +
+        "deg) translateZ(" + radius + "px)", aEle[t].style.transition = "transform 1s", aEle[t].style.transitionDelay =
+        e || (aEle.length - t) / 4 + "s"
+    }
+
+    ground.style.width = 3 * radius + "px", ground.style.height = 3 * radius + "px";
+
+    var sX, sY, nX, nY, desX = 0,
+      desY = 0,
+      tX = 0,
+      tY = 10;
+
+    if (autoRotate) {
+      ospin.style.animation = `spin ${Math.abs(rotateSpeed)}s infinite linear`
+    }
+
+
+
+    // Code I added 
+    var boxes = document.querySelectorAll(".box"),
+        descr = document.querySelector("#description");
+    
+    boxes.forEach((box, i) => {
+      function enter() {
+        aEle[i].classList.add("active");
+
+        // Change the text
+        descr.innerText = box.dataset.text;
+      }
+
+      function leave() {
+        aEle[i].classList.remove("active");
+
+        // optionally change the text
+        descr.innerText = "TAP DIFFERENT BOXES";
+      }
+
+      
+      box.addEventListener("mouseenter", enter);
+      box.addEventListener("touchenter", enter);
+
+      box.addEventListener("mouseleave", leave);
+      box.addEventListener("touchleave", leave);
+    });
+  </script>
+
+
+</body>
+
+</html>
